@@ -1,0 +1,1792 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منهج الماث للصف الأول الإعدادي - الترم الثاني 2024/2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #F5DEB3;
+            --accent-color: #CD853F;
+            --text-dark: #333333;
+            --text-light: #F8F8FF;
+            --background-light: #FFF8E7;
+            --background-dark: #5D5D5D;
+        }
+
+        @font-face {
+            font-family: 'VintageNumbers';
+            src: url('https://cdn.jsdelivr.net/npm/crimson-text-web@1.0.1/fonts/CrimsonText-Regular.ttf') format('truetype');
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            background-image: url('https://cdn.jsdelivr.net/gh/prjseal/CDN@1.0/images/paper-texture.png');
+            background-repeat: repeat;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .english-text {
+            font-family: 'Playfair Display', serif;
+            direction: ltr;
+        }
+
+        .number-text {
+            font-family: 'VintageNumbers', 'Crimson Text', serif;
+            direction: ltr;
+        }
+
+        .page {
+            display: none;
+            padding-bottom: 2rem;
+        }
+        
+        .active-page {
+            display: block;
+        }
+
+        .nav-btn {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 6px rgba(0,0,0,0.4);
+        }
+
+        .lesson-card {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 15px 0;
+            padding: 15px;
+            border-left: 5px solid var(--primary-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://cdn.jsdelivr.net/gh/prjseal/CDN@1.0/images/paper-texture.png');
+            background-repeat: repeat;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .lesson-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+
+        .unit-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .lesson-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .lesson-title::before {
+            content: '✦';
+            margin-left: 8px;
+            color: var(--accent-color);
+        }
+
+        .lesson-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .arabic-explanation {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-right: 3px solid var(--accent-color);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .english-explanation {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-right: 3px solid var(--primary-color);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .quiz-container {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px dashed var(--accent-color);
+        }
+
+        .option {
+            cursor: pointer;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid var(--accent-color);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .option.selected {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .option.correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .option.incorrect {
+            background-color: #F44336;
+            color: white;
+        }
+
+        button.check-answer {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .search-container {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .toggle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            background-image: url('https://cdn.jsdelivr.net/gh/prjseal/CDN@1.0/images/dark-paper-texture.png');
+            background-repeat: repeat;
+            border-bottom: 5px double var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background-color: var(--accent-color);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2) inset;
+        }
+
+        .chart-container {
+            background-color: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .test-card {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .test-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://cdn.jsdelivr.net/gh/prjseal/CDN@1.0/images/paper-texture.png');
+            background-repeat: repeat;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .test-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed var(--accent-color);
+            padding-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .test-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+        }
+
+        .video-section {
+            margin: 20px 0;
+            background-color: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .video-container {
+            margin: 15px 0;
+            display: none;
+        }
+
+        .video-container.show {
+            display: block;
+        }
+
+        .video-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            display: block;
+        }
+
+        .highlight {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .warning-box {
+            background-color: #FFEB3B;
+            border-left: 5px solid #F44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: '⚠️';
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+
+        .coordinate-system {
+            background-color: white;
+            width: 300px;
+            height: 300px;
+            position: relative;
+            margin: 20px auto;
+            border: 1px solid var(--text-dark);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .coordinate-system::before {
+            content: '';
+            position: absolute;
+            top: 150px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--text-dark);
+        }
+
+        .coordinate-system::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 150px;
+            width: 1px;
+            height: 100%;
+            background-color: var(--text-dark);
+        }
+
+        .point {
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+
+        .price-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 300px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-tag::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .price-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .cool-trick {
+            background-color: rgba(255,255,255,0.8);
+            border: 2px dashed var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .cool-trick::before {
+            content: '💡';
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background-color: var(--background-light);
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .answer-feedback {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .answer-feedback.correct {
+            display: block;
+            background-color: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4CAF50;
+        }
+
+        .answer-feedback.incorrect {
+            display: block;
+            background-color: rgba(244, 67, 54, 0.2);
+            border: 1px solid #F44336;
+        }
+
+        /* Fullscreen lesson mode */
+        .fullscreen-mode {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--background-light);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .exit-fullscreen {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .progress-tracker {
+            background-color: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+            border-top: 5px double var(--secondary-color);
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .coordinate-system {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .coordinate-system::before {
+                top: 125px;
+            }
+            
+            .coordinate-system::after {
+                left: 125px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>منهج الماث للصف الأول الإعدادي</h1>
+        <p>الترم الثاني 2024/2025</p>
+        <div class="navbar">
+            <button class="nav-btn" data-page="home">الصفحة الرئيسية</button>
+            <button class="nav-btn" data-page="curriculum">المنهج</button>
+            <button class="nav-btn" data-page="tests">الاختبارات</button>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4">
+        <!-- HOME PAGE -->
+        <div id="home" class="page active-page">
+            <div class="flex flex-col items-center">
+                <div class="w-full md:w-4/5 lg:w-3/4">
+                    <div class="lesson-card">
+                        <h2 class="text-2xl text-center mb-4">مرحباً بك في رحلة الرياضيات!</h2>
+                        <p class="mb-4">
+                            أهلاً بيكم في شرحنا الشامل لمنهج Math للصف الأول الإعدادي الترم الثاني 2024/2025! الشرح ده هيغطي المنهج كامل بالتفصيل بطريقة سهلة ومبسطة حتى لو مستواك ضعيف في الماث. هنشرح المفاهيم الأساسية باللغة الإنجليزية، وهنوضح كل نقطة بالعامية المصرية علشان الفهم يكون أسهل.
+                        </p>
+                        <p class="english-text mb-4">
+                            Welcome to our comprehensive guide for the Math curriculum for the first preparatory grade, second term 2024/2025! This guide covers the entire curriculum in detail in a simple and straightforward way, even if you have difficulty with math. We will explain the basic concepts in English and clarify each point in Egyptian colloquial Arabic to make understanding easier.
+                        </p>
+                    </div>
+
+                    <div class="price-tag my-8">
+                        <h3>احصل على المذكرة الكاملة</h3>
+                        <p class="text-3xl font-bold number-text">20 جنيه فقط!</p>
+                        <p class="mt-2">استثمار بسيط لمستقبل أفضل!</p>
+                    </div>
+
+                    <div class="lesson-card">
+                        <h3 class="text-xl mb-4">لماذا تختار مذكرتنا؟</h3>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-check-circle ml-2 text-green-600"></i> شرح مبسط باللغة الإنجليزية والعامية المصرية</li>
+                            <li><i class="fas fa-check-circle ml-2 text-green-600"></i> تدريبات تفاعلية على كل درس</li>
+                            <li><i class="fas fa-check-circle ml-2 text-green-600"></i> تحليل مستمر لمستواك وتطورك</li>
+                            <li><i class="fas fa-check-circle ml-2 text-green-600"></i> تريكات وأسرار لحل المسائل بسرعة</li>
+                            <li><i class="fas fa-check-circle ml-2 text-green-600"></i> اختبارات متنوعة على كل وحدة</li>
+                            <li><i class="fas fa-check-circle ml-2 text-green-600"></i> فيديوهات شرح تفاعلية</li>
+                        </ul>
+                    </div>
+
+                    <div class="progress-tracker">
+                        <h3 class="text-xl mb-4">تقدمك في المنهج</h3>
+                        <div>
+                            <p>الوحدة الأولى: القوى والأسس</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%;"></div>
+                            </div>
+                            <p class="text-sm text-right">80%</p>
+                        </div>
+                        <div class="mt-4">
+                            <p>الوحدة الثانية: التعبيرات الجبرية</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%;"></div>
+                            </div>
+                            <p class="text-sm text-right">65%</p>
+                        </div>
+                        <div class="mt-4">
+                            <p>الوحدة الثالثة: الهندسة</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                            <p class="text-sm text-right">40%</p>
+                        </div>
+                        <div class="mt-4">
+                            <p>الوحدة الرابعة: الاحتمالات</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 10%;"></div>
+                            </div>
+                            <p class="text-sm text-right">10%</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="text-xl mb-4">تحليل مستواك</h3>
+                        <div class="text-center">
+                            <p>بناء على إجاباتك في التدريبات والاختبارات:</p>
+                            <div class="flex justify-center items-center flex-wrap mt-4">
+                                <div class="w-1/3 p-2">
+                                    <div class="bg-green-100 p-4 rounded-lg">
+                                        <h4>نقاط القوة</h4>
+                                        <ul class="text-sm text-right mt-2">
+                                            <li>القوى والأسس</li>
+                                            <li>المتباينات</li>
+                                            <li>المساحات</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="w-1/3 p-2">
+                                    <div class="bg-yellow-100 p-4 rounded-lg">
+                                        <h4>تحتاج تحسين</h4>
+                                        <ul class="text-sm text-right mt-2">
+                                            <li>التحويلات الهندسية</li>
+                                            <li>ضرب الحدود الجبرية</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="w-1/3 p-2">
+                                    <div class="bg-red-100 p-4 rounded-lg">
+                                        <h4>تحتاج تركيز</h4>
+                                        <ul class="text-sm text-right mt-2">
+                                            <li>الاحتمالات</li>
+                                            <li>قسمة الحدود الجبرية</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-section">
+                        <h3 class="text-xl mb-4">فيديوهات تعليمية موصى بها</h3>
+                        <button class="toggle-btn" id="toggle-videos">
+                            <i class="fas fa-video ml-2"></i> إظهار/إخفاء الفيديوهات
+                        </button>
+                        <div class="video-container" id="videos-container">
+                            <div class="mt-4">
+                                <h4 class="font-bold">1. مقدمة عن القوى والأسس</h4>
+                                <p class="text-sm mb-2">شرح مبسط لقواعد القوى والأسس مع أمثلة متنوعة</p>
+                                <div class="bg-gray-200 rounded-lg p-4 text-center">
+                                    <i class="fas fa-film text-4xl text-gray-500"></i>
+                                    <p class="text-sm mt-2">اضغط لمشاهدة الفيديو</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="font-bold">2. التعبيرات الجبرية وكيفية تبسيطها</h4>
+                                <p class="text-sm mb-2">خطوات تبسيط التعبيرات الجبرية وحل المعادلات</p>
+                                <div class="bg-gray-200 rounded-lg p-4 text-center">
+                                    <i class="fas fa-film text-4xl text-gray-500"></i>
+                                    <p class="text-sm mt-2">اضغط لمشاهدة الفيديو</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="font-bold">3. الهندسة والتحويلات الهندسية</h4>
+                                <p class="text-sm mb-2">شرح الانعكاس والانتقال والدوران بطريقة مبسطة</p>
+                                <div class="bg-gray-200 rounded-lg p-4 text-center">
+                                    <i class="fas fa-film text-4xl text-gray-500"></i>
+                                    <p class="text-sm mt-2">اضغط لمشاهدة الفيديو</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card mt-6">
+                        <h3 class="text-xl mb-4">روابط لمذكرات أخرى</h3>
+                        <div class="flex flex-wrap justify-around">
+                            <div class="w-full md:w-1/2 p-2">
+                                <div class="bg-white p-4 rounded-lg shadow text-center">
+                                    <h4 class="font-bold">مذكرة اللغة العربية</h4>
+                                    <p class="text-sm">الصف الأول الإعدادي - الترم الثاني</p>
+                                    <p class="font-bold number-text mt-2">20 جنيه</p>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 p-2">
+                                <div class="bg-white p-4 rounded-lg shadow text-center">
+                                    <h4 class="font-bold">مذكرة العلوم</h4>
+                                    <p class="text-sm">الصف الأول الإعدادي - الترم الثاني</p>
+                                    <p class="font-bold number-text mt-2">25 جنيه</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CURRICULUM PAGE -->
+        <div id="curriculum" class="page">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-bold mb-4">المنهج الدراسي</h2>
+                <button class="toggle-btn" id="toggle-search">
+                    <i class="fas fa-search ml-2"></i> البحث
+                </button>
+            </div>
+            
+            <div class="search-container" id="search-container" style="display: none;">
+                <input type="text" class="search-input" id="search-input" placeholder="ابحث في المنهج...">
+            </div>
+            
+            <!-- Unit 1: Powers and Exponents -->
+            <div class="my-8">
+                <h3 class="unit-title text-xl">Unit 1: Powers and Exponents - القوى والأسس</h3>
+                
+                <!-- Lesson 1 -->
+                <div class="lesson-card" id="lesson1">
+                    <div class="flex justify-between items-center">
+                        <h4 class="lesson-title">Lesson 1: Powers and Exponents</h4>
+                        <button class="toggle-btn fullscreen-toggle" data-lesson="lesson1">
+                            <i class="fas fa-expand ml-1"></i> عرض كامل
+                        </button>
+                    </div>
+                    <div class="lesson-content">
+                        <div class="english-explanation english-text">
+                            <p><strong>Definition:</strong> A power represents repeated multiplication of the same number. In the expression a^n:</p>
+                            <ul class="list-disc list-inside ml-5 mb-2">
+                                <li>"a" is called the base</li>
+                                <li>"n" is called the exponent or power</li>
+                                <li>a^n means a × a × a × ... (n times)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>شرح بالعامية:</strong> القوى والأسس دي مش حاجة معقدة خالص! الفكرة ببساطة إنك بتاخد رقم وتضربه في نفسه كذا مرة. يعني لما نقول <span class="number-text">3^4</span> (ثري باور فور)، ده معناه إننا هنضرب 3 في نفسه 4 مرات: <span class="number-text">3×3×3×3 = 81</span>.</p>
+                            <p>طيب إيه الـ base والـ exponent؟ الـ base هو الرقم اللي هنضربه في نفسه (زي الـ 3 في المثال)، والـ exponent هو عدد المرات اللي هنضرب فيها (زي الـ 4 في المثال).</p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-4">
+                            <p><strong>Rules for Powers:</strong></p>
+                            <ul class="mb-2">
+                                <li><strong>Product Rule:</strong> a^m × a^n = a^(m+n)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> لما نضرب قوتين ليهم نفس الـ base، بنجمع الأسس.</p>
+                            <p><strong>مثال:</strong> <span class="number-text">2^3 × 2^5 = 2^(3+5) = 2^8 = 256</span></p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-2">
+                            <ul class="mb-2">
+                                <li><strong>Quotient Rule:</strong> a^m ÷ a^n = a^(m-n)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> لما نقسم قوتين ليهم نفس الـ base، بنطرح الأسس.</p>
+                            <p><strong>مثال:</strong> <span class="number-text">5^7 ÷ 5^3 = 5^(7-3) = 5^4 = 625</span></p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-2">
+                            <ul class="mb-2">
+                                <li><strong>Power of a Power:</strong> (a^m)^n = a^(m×n)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> لما يكون عندنا قوة مرفوعة لقوة، بنضرب الأسين في بعض.</p>
+                            <p><strong>مثال:</strong> <span class="number-text">(3^2)^4 = 3^(2×4) = 3^8 = 6,561</span></p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-2">
+                            <ul class="mb-2">
+                                <li><strong>Zero Exponent:</strong> a^0 = 1, where a ≠ 0</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> أي رقم (ماعدا صفر) مرفوع للقوة صفر بيساوي 1.</p>
+                            <p><strong>مثال:</strong> <span class="number-text">7^0 = 1</span></p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-2">
+                            <ul class="mb-2">
+                                <li><strong>Negative Exponent:</strong> a^(-n) = 1/(a^n)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> أي رقم مرفوع لقوة سالبة يعني 1 على الرقم ده مرفوع للقوة الموجبة. يعني بنقلبه وبنخلي الأس موجب.</p>
+                            <p><strong>مثال:</strong> <span class="number-text">2^(-3) = 1/(2^3) = 1/8 = 0.125</span></p>
+                        </div>
+                        
+                        <div class="warning-box mt-4">
+                            <p><strong>تنبيه هام:</strong> لو الـ base سالب أو كسر، لازم تحط قوسين حواليه! مثال <span class="number-text">(−2)^3 ≠ −2^3</span></p>
+                        </div>
+                        
+                        <div class="quiz-container">
+                            <h5 class="font-bold">أسئلة للتدريب:</h5>
+                            
+                            <div class="question mt-3">
+                                <p>1. اختر الإجابة الصحيحة: ناتج <span class="number-text">4^2 × 4^3</span> هو:</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) 4^5</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">b) 4^5</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">c) 4^6</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) 4^1</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <div class="question mt-4">
+                                <p>2. اختر الإجابة الصحيحة: ناتج <span class="number-text">3^4 ÷ 3^2</span> هو:</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) 3^2</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">b) 3^6</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">c) 3^2</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) 9</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <button class="check-answer mt-3">تحقق من إجابتك</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lesson 2 -->
+                <div class="lesson-card" id="lesson2">
+                    <div class="flex justify-between items-center">
+                        <h4 class="lesson-title">Lesson 2: Scientific Notation</h4>
+                        <button class="toggle-btn fullscreen-toggle" data-lesson="lesson2">
+                            <i class="fas fa-expand ml-1"></i> عرض كامل
+                        </button>
+                    </div>
+                    <div class="lesson-content">
+                        <div class="english-explanation english-text">
+                            <p><strong>Definition:</strong> Scientific notation is a way of writing numbers that are too large or too small in a more convenient form. A number in scientific notation is written as: a × 10^n, where 1 ≤ a < 10 and n is an integer.</p>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>شرح بالعامية:</strong> الـ Scientific Notation دي طريقة حلوة أوي نكتب بيها الأرقام الكبيرة جداً أو الصغيرة جداً. لما الرقم بيبقى طويل زي <span class="number-text">5,000,000,000</span> بنكتبه: <span class="number-text">5 × 10^9</span></p>
+                            <p>الفكرة إن أي رقم بنحوله لرقم بين 1 و 10 مضروب في 10 مرفوعة لأس. الأس ده بيدل على عدد الخانات اللي بنحركها.</p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-4">
+                            <p><strong>How to Convert:</strong></p>
+                            <ul class="list-disc list-inside ml-5 mb-2">
+                                <li>To convert from standard form to scientific notation:
+                                    <ul class="list-disc list-inside ml-5">
+                                        <li>Move the decimal point until you have a number between 1 and 10</li>
+                                        <li>Count how many places you moved the decimal</li>
+                                        <li>If you moved it to the left, the exponent is positive</li>
+                                        <li>If you moved it to the right, the exponent is negative</li>
+                                    </ul>
+                                </li>
+                                <li>To convert from scientific notation to standard form:
+                                    <ul class="list-disc list-inside ml-5">
+                                        <li>Take the exponent value</li>
+                                        <li>If positive, move the decimal point to the right that many places</li>
+                                        <li>If negative, move the decimal point to the left that many places</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>أمثلة:</strong></p>
+                            <ul>
+                                <li><span class="number-text">45,000 = 4.5 × 10^4</span> (حركنا العلامة العشرية 4 خانات لليسار)</li>
+                                <li><span class="number-text">0.00298 = 2.98 × 10^(-3)</span> (حركنا العلامة العشرية 3 خانات لليمين)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="warning-box mt-4">
+                            <p><strong>تنبيه هام:</strong> انتبه لإشارة الأس! لو حركت العلامة العشرية لليسار، الأس موجب. ولو حركتها لليمين، الأس سالب.</p>
+                        </div>
+                        
+                        <div class="cool-trick mt-4">
+                            <p><strong>تريكات سريعة:</strong> علشان تعرف الأس موجب ولا سالب، افتكر الكلمة دي: "LARS"</p>
+                            <ul>
+                                <li>Left → Add (لليسار → موجب)</li>
+                                <li>Right → Subtract (لليمين → سالب)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="quiz-container">
+                            <h5 class="font-bold">أسئلة للتدريب:</h5>
+                            
+                            <div class="question mt-3">
+                                <p>1. اكتب العدد <span class="number-text">78,000,000</span> بالصورة العلمية:</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) 7.8 × 10^6</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">b) 7.8 × 10^7</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">c) 78 × 10^6</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) 7.8 × 10^8</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <div class="question mt-4">
+                                <p>2. اكتب العدد <span class="number-text">0.00052</span> بالصورة العلمية:</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">a) 5.2 × 10^(-4)</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">b) 5.2 × 10^4</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">c) 5.2 × 10^(-5)</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) 0.52 × 10^(-3)</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <button class="check-answer mt-3">تحقق من إجابتك</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lesson 3 -->
+                <div class="lesson-card" id="lesson3">
+                    <div class="flex justify-between items-center">
+                        <h4 class="lesson-title">Lesson 3: Square Roots and Cube Roots</h4>
+                        <button class="toggle-btn fullscreen-toggle" data-lesson="lesson3">
+                            <i class="fas fa-expand ml-1"></i> عرض كامل
+                        </button>
+                    </div>
+                    <div class="lesson-content">
+                        <div class="english-explanation english-text">
+                            <p><strong>Definition:</strong></p>
+                            <ul class="list-disc list-inside ml-5 mb-2">
+                                <li>The square root of a number is a value that, when multiplied by itself, gives the original number.</li>
+                                <li>The cube root of a number is a value that, when multiplied by itself twice, gives the original number.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>شرح بالعامية:</strong> الـ Square Roots والـ Cube Roots دول مش صعبين خالص، الموضوع سهل:</p>
+                            <ul>
+                                <li>الـ Square Root بتاع رقم (ورمزه √) هو الرقم اللي لما يتضرب في نفسه بيديني الرقم الأصلي. مثال: <span class="number-text">√16 = 4</span> علشان <span class="number-text">4×4 = 16</span></li>
+                                <li>الـ Cube Root بتاع رقم (ورمزه ∛) هو الرقم اللي لما يتضرب في نفسه مرتين بيديني الرقم الأصلي. مثال: <span class="number-text">∛27 = 3</span> علشان <span class="number-text">3×3×3 = 27</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-4">
+                            <p><strong>Properties of Roots:</strong></p>
+                            <ul class="mb-2">
+                                <li>√(a × b) = √a × √b</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> جذر حاصل ضرب رقمين = حاصل ضرب جذريهما</p>
+                            <p><strong>مثال:</strong> <span class="number-text">√(9 × 4) = √9 × √4 = 3 × 2 = 6</span></p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-2">
+                            <ul class="mb-2">
+                                <li>√(a/b) = √a / √b, where b > 0</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> جذر حاصل قسمة رقمين = حاصل قسمة جذريهما</p>
+                            <p><strong>مثال:</strong> <span class="number-text">√(25/4) = √25 / √4 = 5/2 = 2.5</span></p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-2">
+                            <ul class="mb-2">
+                                <li>(√a)^n = a^(n/2)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> جذر رقم مرفوع لأس = الرقم مرفوع لنصف الأس</p>
+                            <p><strong>مثال:</strong> <span class="number-text">(√7)^4 = 7^(4/2) = 7^2 = 49</span></p>
+                        </div>
+                        
+                        <div class="cool-trick mt-4">
+                            <p><strong>تريكة حلوة:</strong> علشان تحسب Square Roots أسرع، احفظ مربعات الأرقام من 1 لـ 20:</p>
+                            <p class="number-text">1² = 1, 2² = 4, 3² = 9, 4² = 16, 5² = 25, 6² = 36, 7² = 49, 8² = 64, 9² = 81, 10² = 100, 11² = 121, 12² = 144...</p>
+                        </div>
+                        
+                        <div class="quiz-container">
+                            <h5 class="font-bold">أسئلة للتدريب:</h5>
+                            
+                            <div class="question mt-3">
+                                <p>1. اختر الإجابة الصحيحة: ناتج <span class="number-text">√49 + √16</span> هو:</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) 13</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">b) √65</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">c) 11</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) 7</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <div class="question mt-4">
+                                <p>2. اختر الإجابة الصحيحة: ناتج <span class="number-text">∛8 × ∛27</span> هو:</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) 5</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">b) 6</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">c) 9</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) 2 × 3</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <button class="check-answer mt-3">تحقق من إجابتك</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Unit 2: Algebraic Expressions -->
+            <div class="my-8">
+                <h3 class="unit-title text-xl">Unit 2: Algebraic Expressions - التعبيرات الجبرية</h3>
+                
+                <!-- Lesson 1 -->
+                <div class="lesson-card" id="lesson4">
+                    <div class="flex justify-between items-center">
+                        <h4 class="lesson-title">Lesson 1: Inequalities</h4>
+                        <button class="toggle-btn fullscreen-toggle" data-lesson="lesson4">
+                            <i class="fas fa-expand ml-1"></i> عرض كامل
+                        </button>
+                    </div>
+                    <div class="lesson-content">
+                        <div class="english-explanation english-text">
+                            <p><strong>Definition:</strong> An inequality is a mathematical statement that compares two expressions using the symbols: <span class="number-text">&lt;, &gt;, ≤, ≥, or ≠</span></p>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>شرح بالعامية:</strong> الـ Inequalities أو المتباينات هي المقارنة بين حاجتين، بس مش بالضرورة إنهم يكونوا متساويين. زي لما نقول: ٥ أكبر من ٣، أو x أصغر من أو تساوي ١٠.</p>
+                            <p><strong>الرموز اللي بنستخدمها:</strong></p>
+                            <ul>
+                                <li><span class="number-text">&lt;</span> يعني "أصغر من" (less than)</li>
+                                <li><span class="number-text">&gt;</span> يعني "أكبر من" (greater than)</li>
+                                <li><span class="number-text">≤</span> يعني "أصغر من أو يساوي" (less than or equal to)</li>
+                                <li><span class="number-text">≥</span> يعني "أكبر من أو يساوي" (greater than or equal to)</li>
+                                <li><span class="number-text">≠</span> يعني "لا يساوي" (not equal to)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-4">
+                            <p><strong>Rules for Solving Inequalities:</strong></p>
+                            <ul class="mb-2">
+                                <li><strong>Adding/Subtracting:</strong> Adding or subtracting the same value from both sides of an inequality doesn't change the direction of the inequality sign.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> لما نجمع أو نطرح نفس القيمة من طرفي المتباينة، اتجاه علامة المقارنة مش بيتغير.</p>
+                            <p><strong>مثال:</strong> If <span class="number-text">x &gt; 5</span>, then <span class="number-text">x + 3 &gt; 5 + 3</span>, so <span class="number-text">x + 3 &gt; 8</span></p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-2">
+                            <ul class="mb-2">
+                                <li><strong>Multiplying/Dividing by Positive Numbers:</strong> Multiplying or dividing both sides by the same positive value doesn't change the direction of the inequality sign.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> لما نضرب أو نقسم طرفي المتباينة على نفس العدد الموجب، علامة المقارنة مش بتتغير.</p>
+                            <p><strong>مثال:</strong> If <span class="number-text">x &lt; 10</span>, then <span class="number-text">2x &lt; 2(10)</span>, so <span class="number-text">2x &lt; 20</span></p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-2">
+                            <ul class="mb-2">
+                                <li><strong>Multiplying/Dividing by Negative Numbers:</strong> Multiplying or dividing both sides by the same negative value changes the direction of the inequality sign.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> لما نضرب أو نقسم طرفي المتباينة على نفس العدد السالب، لازم نعكس إشارة المقارنة.</p>
+                            <p><strong>مثال:</strong> If <span class="number-text">x &lt; 6</span>, then <span class="number-text">-2x &gt; -2(6)</span>, so <span class="number-text">-2x &gt; -12</span></p>
+                        </div>
+                        
+                        <div class="warning-box mt-4">
+                            <p><strong>تنبيه هام:</strong> انتبه جداً عند الضرب أو القسمة في عدد سالب! لازم تعكس اتجاه علامة المقارنة. يعني &lt; تتحول لـ &gt; والعكس.</p>
+                        </div>
+                        
+                        <div class="quiz-container">
+                            <h5 class="font-bold">أسئلة للتدريب:</h5>
+                            
+                            <div class="question mt-3">
+                                <p>1. حل المتباينة: <span class="number-text">2x - 5 &gt; 7</span></p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) x &lt; 6</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">b) x &gt; 6</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">c) x &gt; 1</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) x &lt; 1</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <div class="question mt-4">
+                                <p>2. حل المتباينة: <span class="number-text">-3x ≤ 12</span></p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) x ≤ -4</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">b) x ≤ 4</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">c) x ≥ -4</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">d) x ≥ -4</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <button class="check-answer mt-3">تحقق من إجابتك</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More lessons for Unit 2 would go here -->
+            </div>
+            
+            <!-- Unit 3: Geometry -->
+            <div class="my-8">
+                <h3 class="unit-title text-xl">Unit 3: Geometry - الهندسة</h3>
+                
+                <!-- Lesson on Transformations -->
+                <div class="lesson-card" id="lesson7">
+                    <div class="flex justify-between items-center">
+                        <h4 class="lesson-title">Lesson 3 & 4: Geometric Transformations</h4>
+                        <button class="toggle-btn fullscreen-toggle" data-lesson="lesson7">
+                            <i class="fas fa-expand ml-1"></i> عرض كامل
+                        </button>
+                    </div>
+                    <div class="lesson-content">
+                        <div class="english-explanation english-text">
+                            <p><strong>Definition:</strong> Geometric transformations are operations that change the position, size, or shape of a geometric figure. The main transformations are translations, reflections, and rotations.</p>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>شرح بالعامية:</strong> التحويلات الهندسية (Geometric Transformations) دي عمليات بنغير بيها مكان أو حجم أو شكل الأشكال الهندسية. الفكرة إننا بناخد شكل وننقله أو نعكسه أو ندوره.</p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-4">
+                            <p><strong>Types of Transformations:</strong></p>
+                            <ul class="mb-2">
+                                <li><strong>Translation (الانتقال):</strong>
+                                    <ul class="list-disc list-inside ml-5">
+                                        <li>Moving a shape in a straight line without rotating, reflecting, or changing its size</li>
+                                        <li>Every point of the shape moves the same distance in the same direction</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> الانتقال يعني تحريك الشكل من مكان لمكان بدون تدوير أو تغيير حجمه. كل نقطة في الشكل بتتحرك نفس المسافة في نفس الاتجاه.</p>
+                            <p><strong>مثال:</strong> ننقل مثلث 4 وحدات لليمين و3 وحدات لأعلى.</p>
+                        </div>
+                        
+                        <div class="coordinate-system mt-4" id="translation-demo">
+                            <!-- Interactive points will be added by JavaScript -->
+                            <div class="point original-point" style="top: 200px; left: 100px;"></div>
+                            <div class="point translated-point" style="top: 170px; left: 140px;"></div>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-4">
+                            <ul class="mb-2">
+                                <li><strong>Reflection (الانعكاس):</strong>
+                                    <ul class="list-disc list-inside ml-5">
+                                        <li>Flipping a shape over a line (the line of reflection)</li>
+                                        <li>The line of reflection acts like a mirror</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> الانعكاس زي المرايا، يعني بنعكس الشكل حول خط معين (خط الانعكاس). كل نقطة في الشكل بتتحرك للجهة المقابلة من الخط بنفس المسافة.</p>
+                            <p><strong>مثال:</strong> نعكس مستطيل حول محور السينات (x-axis) أو محور الصادات (y-axis).</p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-4">
+                            <ul class="mb-2">
+                                <li><strong>Rotation (الدوران):</strong>
+                                    <ul class="list-disc list-inside ml-5">
+                                        <li>Turning a shape around a fixed point (the center of rotation)</li>
+                                        <li>Defined by the center of rotation and the angle of rotation</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> الدوران يعني تدوير الشكل حول نقطة ثابتة (مركز الدوران). بنحدد مركز الدوران وزاوية الدوران.</p>
+                            <p><strong>مثال:</strong> ندور مثلث 90 درجة عكس اتجاه عقارب الساعة حول الأصل.</p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-4">
+                            <p><strong>Basic Rules for Transformations:</strong></p>
+                            <ul>
+                                <li>Translation: (x, y) → (x + h, y + k), where (h, k) is the translation vector</li>
+                                <li>Reflection across x-axis: (x, y) → (x, -y)</li>
+                                <li>Reflection across y-axis: (x, y) → (-x, y)</li>
+                                <li>Reflection across y = x: (x, y) → (y, x)</li>
+                                <li>Rotation 90° counter-clockwise around origin: (x, y) → (-y, x)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="warning-box mt-4">
+                            <p><strong>تنبيه هام:</strong> انتبه لإشارات الإحداثيات عند التحويلات! في الانعكاس حول محور السينات، y تتحول لـ -y والعكس صحيح.</p>
+                        </div>
+                        
+                        <div class="quiz-container">
+                            <h5 class="font-bold">أسئلة للتدريب:</h5>
+                            
+                            <div class="question mt-3">
+                                <p>1. نقطة إحداثياتها (3, 4) تم انتقالها بمقدار (-2, 5). ما هي إحداثيات النقطة الجديدة؟</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) (5, 9)</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">b) (1, -1)</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">c) (1, 9)</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) (-2, 5)</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <div class="question mt-4">
+                                <p>2. نقطة إحداثياتها (5, -2) تم انعكاسها حول محور السينات. ما هي إحداثيات النقطة الجديدة؟</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) (-5, -2)</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">b) (-5, 2)</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">c) (5, 2)</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) (2, 5)</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <button class="check-answer mt-3">تحقق من إجابتك</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Unit 4: Probability -->
+            <div class="my-8">
+                <h3 class="unit-title text-xl">Unit 4: Probability - الاحتمالات</h3>
+                
+                <!-- Probability lesson here -->
+                <div class="lesson-card" id="lesson8">
+                    <div class="flex justify-between items-center">
+                        <h4 class="lesson-title">Lesson 1: Random Experiments</h4>
+                        <button class="toggle-btn fullscreen-toggle" data-lesson="lesson8">
+                            <i class="fas fa-expand ml-1"></i> عرض كامل
+                        </button>
+                    </div>
+                    <div class="lesson-content">
+                        <div class="english-explanation english-text">
+                            <p><strong>Definition:</strong> A random experiment is a process that produces observable results that cannot be predicted with certainty.</p>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>شرح بالعامية:</strong> الـ Random Experiment يعني التجربة العشوائية، وهي عملية لها نتائج محتملة مختلفة مش عارفين بالظبط إيه النتيجة اللي هتطلع. زي رمي العملة أو حجر النرد أو سحب كارت من مجموعة كوتشينة.</p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-4">
+                            <p><strong>Key Concepts:</strong></p>
+                            <ul class="mb-2">
+                                <li><strong>Sample Space (فضاء العينة):</strong>
+                                    <ul class="list-disc list-inside ml-5">
+                                        <li>The set of all possible outcomes of a random experiment</li>
+                                        <li>Denoted by S or Ω</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> فضاء العينة هو مجموعة كل النتائج الممكنة للتجربة العشوائية.</p>
+                            <p><strong>مثال:</strong> عند رمي حجر نرد، فضاء العينة S = {1, 2, 3, 4, 5, 6}</p>
+                        </div>
+                        
+                        <div class="english-explanation english-text mt-2">
+                            <ul class="mb-2">
+                                <li><strong>Event (الحدث):</strong>
+                                    <ul class="list-disc list-inside ml-5">
+                                        <li>A subset of the sample space</li>
+                                        <li>Any collection of possible outcomes</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="arabic-explanation">
+                            <p><strong>بالعربي:</strong> الحدث هو أي مجموعة من النتائج الممكنة من فضاء العينة.</p>
+                            <p><strong>مثال:</strong> الحصول على عدد زوجي عند رمي حجر النرد: E = {2, 4, 6}</p>
+                        </div>
+                        
+                        <div class="quiz-container">
+                            <h5 class="font-bold">أسئلة للتدريب:</h5>
+                            
+                            <div class="question mt-3">
+                                <p>1. عند سحب كارت من مجموعة كوتشينة مكونة من 52 كارت، ما هو احتمال سحب كارت King؟</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) 1/13</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">b) 1/4</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">c) 4/52 = 1/13</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) 4/13</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <div class="question mt-4">
+                                <p>2. عند رمي حجر نرد مرة واحدة، ما هو فضاء العينة؟</p>
+                                <div class="options mt-2">
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">a) {1, 3, 5}</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">b) {2, 4, 6}</span>
+                                    </div>
+                                    <div class="option" data-correct="true">
+                                        <span class="number-text mr-2">c) {1, 2, 3, 4, 5, 6}</span>
+                                    </div>
+                                    <div class="option" data-correct="false">
+                                        <span class="number-text mr-2">d) {H, T}</span>
+                                    </div>
+                                </div>
+                                <div class="answer-feedback"></div>
+                            </div>
+                            
+                            <button class="check-answer mt-3">تحقق من إجابتك</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TESTS PAGE -->
+        <div id="tests" class="page">
+            <h2 class="text-2xl font-bold mb-4">اختبارات تفاعلية</h2>
+            
+            <div class="test-card">
+                <h3 class="test-title">اختبار شامل على الوحدة الأولى: القوى والأسس</h3>
+                <p>يغطي هذا الاختبار جميع دروس الوحدة الأولى ويتكون من 15 سؤال متنوع</p>
+                <button class="test-btn">ابدأ الاختبار</button>
+            </div>
+            
+            <div class="test-card">
+                <h3 class="test-title">اختبار شامل على الوحدة الثانية: التعبيرات الجبرية</h3>
+                <p>يغطي هذا الاختبار جميع دروس الوحدة الثانية ويتكون من 15 سؤال متنوع</p>
+                <button class="test-btn">ابدأ الاختبار</button>
+            </div>
+            
+            <div class="test-card">
+                <h3 class="test-title">اختبار شامل على الوحدة الثالثة: الهندسة</h3>
+                <p>يغطي هذا الاختبار جميع دروس الوحدة الثالثة ويتكون من 15 سؤال متنوع</p>
+                <button class="test-btn">ابدأ الاختبار</button>
+            </div>
+            
+            <div class="test-card">
+                <h3 class="test-title">اختبار شامل على الوحدة الرابعة: الاحتمالات</h3>
+                <p>يغطي هذا الاختبار جميع دروس الوحدة الرابعة ويتكون من 15 سؤال متنوع</p>
+                <button class="test-btn">ابدأ الاختبار</button>
+            </div>
+            
+            <div class="test-card">
+                <h3 class="test-title">اختبار شامل على المنهج كامل</h3>
+                <p>يغطي هذا الاختبار جميع الوحدات ويتكون من 30 سؤال متنوع</p>
+                <button class="test-btn">ابدأ الاختبار</button>
+            </div>
+            
+            <div class="lesson-card mt-6">
+                <h3 class="text-xl mb-4">آخر نتائجك في الاختبارات</h3>
+                <div class="chart-container">
+                    <div class="flex flex-wrap">
+                        <div class="w-1/2 p-2">
+                            <div class="bg-white p-3 rounded-lg text-center">
+                                <h4>اختبار الوحدة الأولى</h4>
+                                <p class="font-bold number-text text-2xl text-green-600">80%</p>
+                            </div>
+                        </div>
+                        <div class="w-1/2 p-2">
+                            <div class="bg-white p-3 rounded-lg text-center">
+                                <h4>اختبار الوحدة الثانية</h4>
+                                <p class="font-bold number-text text-2xl text-yellow-600">65%</p>
+                            </div>
+                        </div>
+                        <div class="w-1/2 p-2">
+                            <div class="bg-white p-3 rounded-lg text-center">
+                                <h4>اختبار الوحدة الثالثة</h4>
+                                <p class="font-bold number-text text-2xl text-red-600">45%</p>
+                            </div>
+                        </div>
+                        <div class="w-1/2 p-2">
+                            <div class="bg-white p-3 rounded-lg text-center">
+                                <h4>الاختبار الشامل</h4>
+                                <p class="font-bold number-text text-2xl text-yellow-600">68%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>جميع الحقوق محفوظة © 2024</p>
+        <p>مذكرة الماث للصف الأول الإعدادي - الترم الثاني</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation between pages
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const pages = document.querySelectorAll('.page');
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetPageId = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    pages.forEach(page => {
+                        page.classList.remove('active-page');
+                    });
+                    
+                    // Show target page with animation
+                    const targetPage = document.getElementById(targetPageId);
+                    targetPage.classList.add('active-page', 'fade-in');
+                    
+                    // Update active button styling
+                    navButtons.forEach(btn => {
+                        btn.style.backgroundColor = '';
+                    });
+                    this.style.backgroundColor = 'var(--primary-color)';
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Toggle search box
+            const toggleSearchButton = document.getElementById('toggle-search');
+            const searchContainer = document.getElementById('search-container');
+            
+            toggleSearchButton.addEventListener('click', function() {
+                if (searchContainer.style.display === 'none') {
+                    searchContainer.style.display = 'block';
+                    searchContainer.classList.add('fade-in');
+                } else {
+                    searchContainer.style.display = 'none';
+                }
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('search-input');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const lessonCards = document.querySelectorAll('.lesson-card');
+                
+                lessonCards.forEach(card => {
+                    const cardText = card.textContent.toLowerCase();
+                    if (cardText.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Toggle videos
+            const toggleVideosButton = document.getElementById('toggle-videos');
+            const videosContainer = document.getElementById('videos-container');
+            
+            toggleVideosButton.addEventListener('click', function() {
+                if (videosContainer.classList.contains('show')) {
+                    videosContainer.classList.remove('show');
+                } else {
+                    videosContainer.classList.add('show', 'fade-in');
+                }
+            });
+            
+            // Handle option selection
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Find all options in the same question
+                    const questionOptions = this.closest('.options').querySelectorAll('.option');
+                    
+                    // Deselect all options
+                    questionOptions.forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Select this option
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Handle check answer button
+            const checkAnswerButtons = document.querySelectorAll('.check-answer');
+            
+            checkAnswerButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Find the question container
+                    const quizContainer = this.closest('.quiz-container');
+                    const questions = quizContainer.querySelectorAll('.question');
+                    let correctAnswers = 0;
+                    
+                    questions.forEach(question => {
+                        const selectedOption = question.querySelector('.option.selected');
+                        const feedbackDiv = question.querySelector('.answer-feedback');
+                        
+                        if (selectedOption) {
+                            const isCorrect = selectedOption.getAttribute('data-correct') === 'true';
+                            
+                            // Show feedback
+                            if (isCorrect) {
+                                feedbackDiv.textContent = 'إجابة صحيحة! أحسنت!';
+                                feedbackDiv.classList.add('correct');
+                                feedbackDiv.classList.remove('incorrect');
+                                selectedOption.classList.add('correct');
+                                correctAnswers++;
+                            } else {
+                                feedbackDiv.textContent = 'إجابة خاطئة. حاول مرة أخرى!';
+                                feedbackDiv.classList.add('incorrect');
+                                feedbackDiv.classList.remove('correct');
+                                selectedOption.classList.add('incorrect');
+                                
+                                // Show the correct answer
+                                const correctOption = Array.from(question.querySelectorAll('.option')).find(opt => opt.getAttribute('data-correct') === 'true');
+                                if (correctOption) correctOption.classList.add('correct');
+                            }
+                        } else {
+                            feedbackDiv.textContent = 'الرجاء اختيار إجابة!';
+                            feedbackDiv.classList.add('incorrect');
+                            feedbackDiv.classList.remove('correct');
+                        }
+                    });
+                    
+                    // Update progress on homepage based on answers
+                    updateProgress(correctAnswers / questions.length);
+                });
+            });
+            
+            // Handle fullscreen mode for lessons
+            const fullscreenToggles = document.querySelectorAll('.fullscreen-toggle');
+            
+            fullscreenToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const lessonId = this.getAttribute('data-lesson');
+                    const lessonCard = document.getElementById(lessonId);
+                    
+                    if (lessonCard.classList.contains('fullscreen-mode')) {
+                        // Exit fullscreen
+                        lessonCard.classList.remove('fullscreen-mode');
+                        document.querySelector('.exit-fullscreen').remove();
+                        this.innerHTML = '<i class="fas fa-expand ml-1"></i> عرض كامل';
+                    } else {
+                        // Enter fullscreen
+                        lessonCard.classList.add('fullscreen-mode');
+                        
+                        // Add exit button
+                        const exitButton = document.createElement('button');
+                        exitButton.className = 'exit-fullscreen';
+                        exitButton.innerHTML = '<i class="fas fa-compress ml-1"></i> إغلاق';
+                        document.body.appendChild(exitButton);
+                        
+                        exitButton.addEventListener('click', function() {
+                            lessonCard.classList.remove('fullscreen-mode');
+                            this.remove();
+                            toggle.innerHTML = '<i class="fas fa-expand ml-1"></i> عرض كامل';
+                        });
+                        
+                        this.innerHTML = '<i class="fas fa-compress ml-1"></i> إغلاق';
+                    }
+                });
+            });
+            
+            // Simple progress tracking function
+            function updateProgress(score) {
+                // This would normally save to a database or localStorage
+                // For this demo, we'll just update a random progress bar
+                const progressFills = document.querySelectorAll('.progress-fill');
+                if (progressFills.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * progressFills.length);
+                    const currentWidth = parseFloat(progressFills[randomIndex].style.width);
+                    let newWidth = currentWidth + (score * 10);
+                    if (newWidth > 100) newWidth = 100;
+                    progressFills[randomIndex].style.width = newWidth + '%';
+                    progressFills[randomIndex].closest('div').querySelector('.text-sm').textContent = Math.round(newWidth) + '%';
+                }
+            }
+            
+            // Test buttons event listeners
+            const testButtons = document.querySelectorAll('.test-btn');
+            testButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('سيتم فتح الاختبار قريباً. هذه نسخة تجريبية فقط.');
+                });
+            });
+            
+            // Drag-and-drop functionality for the coordinate points
+            const points = document.querySelectorAll('.point');
+            let activePoint = null;
+            
+            points.forEach(point => {
+                point.addEventListener('mousedown', startDrag);
+                point.addEventListener('touchstart', startDrag);
+            });
+            
+            function startDrag(e) {
+                e.preventDefault();
+                activePoint = this;
+                
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('touchmove', drag);
+                document.addEventListener('mouseup', endDrag);
+                document.addEventListener('touchend', endDrag);
+            }
+            
+            function drag(e) {
+                if (!activePoint) return;
+                
+                let x, y;
+                if (e.type === 'touchmove') {
+                    const touch = e.touches[0];
+                    x = touch.clientX;
+                    y = touch.clientY;
+                } else {
+                    x = e.clientX;
+                    y = e.clientY;
+                }
+                
+                const coordSystem = document.getElementById('translation-demo');
+                const rect = coordSystem.getBoundingClientRect();
+                
+                // Make sure the point stays within the coordinate system
+                let newX = Math.max(0, Math.min(rect.width, x - rect.left));
+                let newY = Math.max(0, Math.min(rect.height, y - rect.top));
+                
+                activePoint.style.left = newX + 'px';
+                activePoint.style.top = newY + 'px';
+            }
+            
+            function endDrag() {
+                activePoint = null;
+                document.removeEventListener('mousemove', drag);
+                document.removeEventListener('touchmove', drag);
+                document.removeEventListener('mouseup', endDrag);
+                document.removeEventListener('touchend', endDrag);
+            }
+        });
+    </script>
+</body>
+</html>
+    
