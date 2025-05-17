@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Firas’s Old-Style Math Quiz</title>
+  <!-- خطوط -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cambria+Math&display=swap" rel="stylesheet">
+  <style>
+    /* —— Variables —— */
+    :root {
+      --primary-color: #8B4513;
+      --secondary-color: #D2B48C;
+      --accent-color: #A0522D;
+      --text-color: #3D2314;
+      --light-color: #F5F5DC;
+      --border-color: #CD853F;
+      --radius: 8px;
+      --font-num: "Cambria Math", serif;
+      --font-eng: "EB Garamond", serif;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      font-family: var(--font-eng);
+      display:flex; flex-direction:column; min-height:100vh;
+    }
+    header {
+      background: var(--primary-color);
+      color: var(--text-light);
+      padding:1rem;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    header h1 {
+      font-family:'Reem Kufi',sans-serif;
+      color:'white'
+      font-size:1.4rem;
+    }
+    header a.home {
+      color: var(--text-light);
+      font-family: var(--font-num);
+      text-decoration:none;
+      font-size:1.2rem;
+    }
+    nav {
+      display:flex;
+      background: var(--secondary-color);
+    }
+    nav button {
+      flex:1;
+      padding:0.7rem;
+      border:none;
+      background: var(--secondary-color);
+      border-right:1px solid var(--accent-color);
+      font-family:'Reem Kufi',sans-serif;
+      font-size:1rem;
+      cursor:pointer;
+    }
+    nav button:last-child { border-right:none; }
+    nav button.active {
+      background: var(--accent-color);
+      color:#fff;
+    }
+    main {
+      flex:1;
+      padding:1rem;
+      animation: fadeIn 0.5s ease;
+    }
+    .controls {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:1rem;
+      font-family: var(--font-num);
+    }
+    #timer { font-size:1.1rem; }
+    .question-card {
+      background:#fff;
+      border:1px solid var(--border-color);
+      border-radius:var(--radius);
+      padding:1rem;
+      margin-bottom:1rem;
+      box-shadow:2px 2px 6px rgba(0,0,0,0.1);
+    }
+    .question-card h4 {
+      margin-bottom:0.5rem;
+      font-family:'Reem Kufi',sans-serif;
+    }
+    .question-card p {
+      margin-bottom:0.5rem;
+    }
+    .question-card ul {
+      list-style:none;
+    }
+    .question-card li { margin:0.5rem 0; }
+    .question-card button {
+      width:100%;
+      padding:0.5rem;
+      text-align:left;
+      border:1px solid var(--border-color);
+      border-radius:var(--radius);
+      background: var(--bg-light);
+      cursor:pointer;
+      transition: background 0.2s;
+      font-family: var(--font-eng);
+    }
+    .question-card button:hover { background:#eee; }
+    .feedback {
+      margin-top:0.5rem;
+      font-weight:bold;
+      font-family: var(--font-num);
+    }
+    #scorePanel {
+      text-align:center;
+      margin-top:1rem;
+      font-family: var(--font-num);
+    }
+    #scorePanel button {
+      margin-top:0.5rem;
+      padding:0.6rem 1rem;
+      border:none;
+      background: var(--primary-color);
+      color:#fff;
+      border-radius:var(--radius);
+      cursor:pointer;
+    }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @media (max-width:480px){
+      header h1 { font-size:1.2rem; }
+      nav button { font-size:0.9rem; padding:0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>اختبارات الصف الاول الاعدادي</h1>
+    <a href="main.html" class="home">🏠</a>
+  </header>
+
+  <nav>
+    <button data-sec="unit1" class="active">Powers</button>
+    <button data-sec="unit2">Algebra</button>
+    <button data-sec="unit3">Geometry</button>
+    <button data-sec="unit4">Probability</button>
+    <button data-sec="mixed">Mixed</button>
+  </nav>
+
+  <main>
+    <div class="controls">
+      <label><input type="checkbox" id="useTimer"> Use Timer (1:30)</label>
+      <div id="timer">01:30:00</div>
+    </div>
+    <div id="quiz"></div>
+    <div id="scorePanel" style="display:none;">
+      <div>Your Score: <span id="scoreVal"></span></div>
+      <button id="retryBtn">Retake Test</button>
+    </div>
+  </main>
+
+  <script>
+    // ===== بيانات الأسئلة كما في ملف Word (90 سؤال) =====
+    const quizes = {
+      unit1: [
+        {text:"What is 2³?",choices:["6","8","9","12"],a:1,l:1},
+        {text:"What is 5⁰?",choices:["0","1","5","undef."],a:1,l:1},
+        {text:"Write 5·5·5 using exponents.",choices:["5²","5³","3⁵","15"],a:1,l:1},
+        {text:"What is 3²?",choices:["5","6","9","12"],a:2,l:1},
+        {text:"Simplify 4²·4³.",choices:["4⁵","4⁶","1024","4096"],a:2,l:2},
+        {text:"6⁵÷6²=?",choices:["6³","6⁴","36","216"],a:3,l:2},
+        {text:"(2·3)²=?",choices:["6²","2²+3²","36","12"],a:2,l:2},
+        {text:"What is 3⁻¹?",choices:["1/3","3","-3","-1/3"],a:0,l:2},
+        {text:"Simplify x²·x³·x⁻¹.",choices:["x⁶","x⁴","x⁵","x⁰"],a:1,l:3},
+        {text:"(4²)·(4⁻²)=?",choices:["4⁴","4⁰","1","1/16"],a:2,l:3},
+        {text:"(2³)²=?",choices:["2³","2⁵","2⁶","2⁹"],a:2,l:3},
+        {text:"3²÷3⁻¹=?",choices:["3³","3¹","3⁰","27"],a:3,l:3},
+        {text:"(1/2)⁻²=?",choices:["2","4","1/4","1/2"],a:1,l:4},
+        {text:"(x²y³)²=?",choices:["x²y⁶","x⁴y⁶","x⁴y³","x²y⁵"],a:1,l:4},
+        {text:"(2³)²·4⁻¹=?",choices:["2","4","8","16"],a:3,l:4}
+      ],
+      unit2: [
+        {text:"2x+3x=?",choices:["2x","3x","5x","6x"],a:2,l:1},
+        {text:"If x=3,2x+4=?",choices:["6","7","10","14"],a:2,l:1},
+        {text:"7y-2y=?",choices:["5y","9y","y","0"],a:0,l:1},
+        {text:"If p=3,5p-1=?",choices:["14","16","10","7"],a:0,l:1},
+        {text:"Solve x+5=9",choices:["3","4","14","5"],a:1,l:2},
+        {text:"Solve 3x=12",choices:["3","4","8","6"],a:1,l:2},
+        {text:"2(x+3)=",choices:["2x+3","2x+6","5x+6","2x+9"],a:1,l:2},
+        {text:"Factor 4x+8=",choices:["2(x+4)","4(x+2)","8(x+1)","4x+4+4"],a:1,l:2},
+        {text:"Solve 2x+3=11",choices:["4","5","14","8"],a:0,l:3},
+        {text:"Solve 3x-4=5",choices:["3","5","2","4"],a:2,l:3},
+        {text:"2x+3=x+7",choices:["1","2","4","5"],a:2,l:3},
+        {text:"4(x-1)=12",choices:["2","3","4","5"],a:2,l:3},
+        {text:"(x/3)+5=9",choices:["7","12","3","4"],a:1,l:4},
+        {text:"2(x+3)=3x+6",choices:["0","3","4","6"],a:0,l:4},
+        {text:"2(x-1)=3x-4",choices:["2","3","4","1"],a:0,l:4}
+      ],
+      unit3: [
+        {text:"Area rect 4×6?",choices:["10","24","20","12"],a:1,l:1},
+        {text:"Perim rect 5×7?",choices:["24","12","17","14"],a:0,l:1},
+        {text:"Tri angles 50°,60°,3rd?",choices:["60°","70°","80°","50°"],a:1,l:1},
+        {text:"4 equal sides & right angles?",choices:["Rect","Rhombus","Square","Parallelogram"],a:2,l:1},
+        {text:"Area tri base8,height5?",choices:["20","13","40","10"],a:0,l:2},
+        {text:"Perim tri3,4,5?",choices:["12","15","16","9"],a:0,l:2},
+        {text:"Radius4 diam?",choices:["2","8","4π","2π"],a:1,l:2},
+        {text:"Polygon5 sides?",choices:["Pentagon","Hexagon","Quadrilateral","Heptagon"],a:0,l:2},
+        {text:"Sum interior tri?",choices:["180°","360°","90°","270°"],a:0,l:3},
+        {text:"Circle area formula?",choices:["2πr","πr","πr²","πd"],a:2,l:3},
+        {text:"Square area144,side?",choices:["12","24","48","4"],a:0,l:3},
+        {text:"One pair parallel?",choices:["Parallelogram","Rect","Trapezoid","Square"],a:2,l:3},
+        {text:"Sum pentagon int?",choices:["540°","360°","180°","720°"],a:0,l:4},
+        {text:"Sum ext poly?",choices:["180°","360°","90°","Depends"],a:1,l:4},
+        {text:"Each equi tri angle?",choices:["45°","60°","90°","75°"],a:1,l:4}
+      ],
+      unit4: [
+        {text:"Coin P(heads)?",choices:["1/4","1/2","1/3","2/3"],a:1,l:1},
+        {text:"Die P(3 or5)?",choices:["1/3","1/2","1/6","1/4"],a:0,l:1},
+        {text:"Die P(even)?",choices:["1/3","1/2","2/3","1/6"],a:1,l:1},
+        {text:"3 red,2 blue P(red)?",choices:["3/5","2/5","1/2","1/5"],a:0,l:1},
+        {text:"4 red,6 blue P(blue)?",choices:["2/5","3/5","3/10","6/10"],a:3,l:2},
+        {text:"Die P(not even)?",choices:["1/2","2/3","1/6","1/3"],a:0,l:2},
+        {text:"2 coins ≥1 head?",choices:["1/4","1/2","3/4","2/4"],a:2,l:2},
+        {text:"Die P(not4)?",choices:["5/6","1/6","2/3","1/4"],a:0,l:2},
+        {text:"3 red,5 blue,2 green P(r or b)?",choices:["3/10","8/10","2/10","3/5"],a:1,l:3},
+        {text:"Deck P(diamond)?",choices:["13/52","1/4","1/2","13/13"],a:1,l:3},
+        {text:"3 red,5 blue,2 green P(r or g)?",choices:["3/10","2/10","5/10","1/2"],a:3,l:3},
+        {text:"P(E)=0.3,P(not E)?",choices:["0.3","0.7","0.5","0.6"],a:1,l:3},
+        {text:"2 dice ≥1 six?",choices:["1/6","11/36","1/2","25/36"],a:1,l:4},
+        {text:"3 coins no heads?",choices:["1/8","1/4","7/8","3/8"],a:0,l:4},
+        {text:"2 balls no repl both red?",choices:["4/10","1/10","3/10","1/5"],a:1,l:4}
+      ],
+      mixed: [
+        {text:"What is 2¹?",choices:["1","2","4","3"],a:1,l:1},
+        {text:"If x=2,3x=?",choices:["2","4","6","5"],a:2,l:1},
+        {text:"Coin P(heads)?",choices:["1/3","1/2","2/3","1/4"],a:1,l:1},
+        {text:"Hexagon sides?",choices:["4","5","6","8"],a:2,l:1},
+        {text:"2y+3y=?",choices:["2y","5y","y","3y"],a:1,l:1},
+        {text:"Square side4 area?",choices:["8","12","16","4"],a:2,l:1},
+        {text:"Die P(odd)?",choices:["1/2","1/3","2/3","1/6"],a:0,l:1},
+        {text:"Factor6x+6=",choices:["6(x+1)","6(x+6)","x+6","6x+6"],a:0,l:1},
+        {text:"Solve x+3=7",choices:["3","4","5","10"],a:1,l:2},
+        {text:"Triangle base5 area20,h?",choices:["8","4","2","16"],a:0,l:2},
+        {text:"2³·2²=?",choices:["2⁵","2⁶","8","4"],a:0,l:2},
+        {text:"Die P(5)?",choices:["1/6","1/5","1/3","1/4"],a:0,l:2},
+        {text:"Expand3(x-2)",choices:["3x-2","3x-6","3x-5","3x-4"],a:1,l:2},
+        {text:"Combine5a+2a=?",choices:["7a","3a","10a","5a+2a"],a:0,l:2},
+        {text:"If y=4,2y-1=?",choices:["7","8","3","9"],a:0,l:2},
+        {text:"Factor3x+12=",choices:["3(x+4)","3(x+3)","x+4","3x+3+9"],a:0,l:2},
+        {text:"≥1 six in2 dice?",choices:["11/36","25/36","1/6","1/3"],a:0,l:3},
+        {text:"No heads in3 coins?",choices:["1/8","3/8","7/8","1/4"],a:0,l:3},
+        {text:"5³·5⁻²=?",choices:["5¹","25","5","125"],a:0,l:3},
+        {text:"x²·x⁻⁵=?",choices:["x⁻³","x³","x⁷","x⁻⁷"],a:0,l:3},
+        {text:"5(x-2)=3x+4",choices:["2","5","7","4"],a:2,l:3},
+        {text:"(-2)³=?",choices:["-8","8","-6","6"],a:0,l:3},
+        {text:"Solve(2x+1)/3=5",choices:["3","4","7","12"],a:3,l:4},
+        {text:"3x-2=2x+8,x?",choices:["8","10","5","7"],a:1,l:4},
+        {text:"(5³)(5⁻²)=?",choices:["5¹","25","5","125"],a:0,l:4},
+        {text:"x²·x⁻⁵=?",choices:["x⁻³","x³","x⁵","x⁷"],a:0,l:4},
+        {text:"4(x+1)=20,x?",choices:["3","4","5","2"],a:0,l:4},
+        {text:"Sum=7 in2 dice?",choices:["1/6","1/9","1/12","1/4"],a:0,l:4}
+      ]
+    };
+
+    // ===== متغيرات وحسابات =====
+    let sec='unit1', total=0, correct=0, timeLeft=5400, timerInt;
+    const quizEl=document.getElementById('quiz'),
+          scoreP=document.getElementById('scorePanel'),
+          scoreV=document.getElementById('scoreVal'),
+          timerEl=document.getElementById('timer'),
+          useT=document.getElementById('useTimer'),
+          retryBTN=document.getElementById('retryBtn');
+
+    function startSection(){
+      clearInterval(timerInt);
+      correct=0; total=quizes[sec].length;
+      scoreP.style.display='none'; quizEl.innerHTML='';
+      timeLeft=5400; timerEl.textContent='01:30:00';
+      if(useT.checked) timerInt=setInterval(updateTimer,1000);
+
+      quizes[sec].forEach((q,i)=>{
+        const card=document.createElement('div');
+        card.className='question-card';
+        card.innerHTML=`
+          <h4>Q${i+1} (${["Easy","Normal","Hard","Very Hard"][q.l-1]})</h4>
+          <p>${q.text}</p>
+          <ul>${q.choices.map((c,j)=>
+            `<li><button data-i="${i}" data-j="${j}">${String.fromCharCode(65+j)}. ${c}</button></li>`
+          ).join('')}</ul>
+          <div class="feedback" id="fb${i}"></div>`;
+        quizEl.appendChild(card);
+      });
+      document.querySelectorAll('.question-card button').forEach(btn=>{
+        btn.onclick=()=>{
+          const i=+btn.dataset.i, j=+btn.dataset.j, fb=document.getElementById('fb'+i);
+          if(fb.textContent) return;
+          if(j===quizes[sec][i].a){
+            fb.textContent='تمام كده! إجابتك صح.'; fb.style.color='green'; correct++;
+          } else {
+            const ans=quizes[sec][i].choices[quizes[sec][i].a];
+            fb.textContent=`لأ يا باشا، دي غلط. الصح: ${ans}، علشان كده ${getReason(sec,i)}`; fb.style.color='red';
+          }
+          if([...document.querySelectorAll('.feedback')].every(f=>f.textContent)){
+            finishTest();
+          }
+        };
+      });
+    }
+    function updateTimer(){
+      if(timeLeft<=0){
+        clearInterval(timerInt);
+        quizEl.querySelectorAll('button').forEach(b=>b.disabled=true);
+        alert('الوقت إنتهى! انت فشلت في الاختبار.');
+        showScore();
+        return;
+      }
+      timeLeft--;
+      const h=String(Math.floor(timeLeft/3600)).padStart(2,'0'),
+            m=String(Math.floor(timeLeft%3600/60)).padStart(2,'0'),
+            s=String(timeLeft%60).padStart(2,'0');
+      timerEl.textContent=`${h}:${m}:${s}`;
+    }
+    function finishTest(){
+      clearInterval(timerInt);
+      showScore();
+    }
+    function showScore(){
+      scoreV.textContent=`${correct}/${total}`;
+      scoreP.style.display='block';
+    }
+    retryBTN.onclick=startSection;
+
+    document.querySelectorAll('nav button').forEach(b=>{
+      b.onclick=()=>{
+        document.querySelector('nav .active').classList.remove('active');
+        b.classList.add('active');
+        sec=b.dataset.sec;
+        startSection();
+      };
+    });
+
+    // مثال reasons مستخلصة من Word للشرح
+    function getReason(section,i){
+      // في الواقع هتجيب الكلام من ملف Word؛ هنا مثال عام:
+      return "دي هي القاعدة بتاعة الأسس/الجمع/المساحة إلخ.";
+    }
+
+    // ابدأ أول قسم
+    startSection();
+  </script>
+</body>
+</html>
