@@ -12,7 +12,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="منهج Science">
     <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi2YXZhtmH2KwgU2NpZW5jZSDZhNmE2LXZgSDYp9mE2KPZiNmEINin2YTYpdi52K/Yp9iv2YoiLCJzaG9ydF9uYW1lIjoi2YXZhtmH2KwgU2NpZW5jZSIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjRkZGOEU3IiwidGhlbWVfY29sb3IiOiIjOEI0NTEzIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1USTRJaUJvWldsbmFIUTlJakV5T0NJZ2RtbGxkMEp2ZUQwaU1DQXdJREV5T0NBeU9DSWdabWxzYkQwaUl6aENORFV4TXlJZ2VHMXNibk05SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpJd01EQXZjM1puSWo0OGNtVmpkQ0IzYVdSMGFEMGlNVEk0SWlCb1pXbG5hSFE5SWpFeU9DSWdabWxzYkQwaUl6aENORFV4TXlJdkBqOGRHVjRkQ0I0UFNJMk5DSWdlVDBpTmpRaUlHWnBiR3c5SW1ac2FXZG9kR052Ykc5eUlpQm1iMjUwTFdaaGJXbHNlVDBpUVhKcFlXd3NJSE5sY21sbUlpQm1iMjUwTFhOcGVtVTlJakUySWlCbWIyNTBMWGRsYVdkb2REMGlOekF3SWo1VGFXVnVZMlU4TDNSbGVIUStQQzl6ZG1jKyIsInNpemVzIjoiMTI4eDEyOCIsInR5cGUiOiJpbWFnZS9zdmcreG1sIn1dfQ==">
-    
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d9488">
+
     <!-- Stylesheets -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
@@ -1166,6 +1168,13 @@
             <p class="mt-6 text-sm">© جميع الحقوق محفوظة 2024</p>
         </div>
     </footer>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log('✅ Service Worker Registered'))
+      .catch(err => console.log('❌ Service Worker failed:', err));
+  }
+</script>
 
     <script>
         // Service Worker Registration for PWA
